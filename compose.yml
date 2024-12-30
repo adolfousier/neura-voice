@@ -1,0 +1,21 @@
+services:
+  neura-meeting-agent:
+    build: .
+    volumes:
+      - .:/app
+    devices:
+      - "/dev/snd:/dev/snd"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "7"
+
+
